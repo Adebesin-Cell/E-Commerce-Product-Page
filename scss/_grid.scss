@@ -1,0 +1,26 @@
+.container {
+  @media only screen and (min-width: 1800px) {
+    padding-left: 3.5%;
+    padding-right: 3.5%;
+  }
+
+  @media only screen and (max-width: 1799px) {
+    padding-left: 3.5%;
+    padding-right: 3.5%;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    padding-left: 3.5%;
+    padding-right: 3.5%;
+  }
+
+  @media only screen and (max-width: 600px) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+}

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <title>Frontend Mentor | E-commerce product page</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <!-- <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style> -->
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="header">
+        <div class="container">
+          <div class="header__wrapper">
+            <div class="header__menu-toggle">
+              <svg width="16" height="15" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M16 12v3H0v-3h16Zm0-6v3H0V6h16Zm0-6v3H0V0h16Z"
+                  fill="#69707D"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <div class="header__logo-box">
+              <a href="#" class="header__logo-link">
+                <img
+                  src="./assets/icons/logo.svg"
+                  alt="sneakers"
+                  class="header__logo"
+                />
+              </a>
+            </div>
+            <div class="header-navigation">
+              <ul class="header-navigation__list">
+                <li class="header-navigation__item">
+                  <a href="#" class="header-navigation__link" name="Collections"
+                    >Collections</a
+                  >
+                </li>
+                <li class="header-navigation__item">
+                  <a href="#" class="header-navigation__link" name="Men">Men</a>
+                </li>
+                <li class="header-navigation__item">
+                  <a href="#" class="header-navigation__link" name="Women"
+                    >Women</a
+                  >
+                </li>
+                <li class="header-navigation__item">
+                  <a href="#" class="header-navigation__link" name="About"
+                    >About</a
+                  >
+                </li>
+                <li class="header-navigation__item">
+                  <a href="#" class="header-navigation__link" name="Contact"
+                    >Contact</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="header__cart-icon">
+              <div class="header__cart-tooltip">
+                <span> 00 </span>
+              </div>
+              <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"
+                  fill="#69707D"
+                  fill-rule="nonzero"
+                />
+              </svg>
+            </div>
+            <div class="cart cart--hidden empty">
+              <h1 class="cart__header">Cart</h1>
+              <div class="cart__body">
+                <p class="cart__paragraph">Your cart is empty</p>
+                <ul class="cart__list">
+                  <!-- <li class="cart__item">
+                    <div class="cart__wrapper">
+                      <div class="cart__image-box">
+                        <img
+                          src="./assets/images/image-product-1.jpg"
+                          alt="Fall Limited Edition Sneakers"
+                          class="cart__image"
+                        />
+                      </div>
+                      <div class="cart__description">
+                        <h1 class="cart__title">
+                          Fall Limited Edition Sneakers
+                        </h1>
+                        <p class="cart__details">
+                          <span class="cart__price"> $125.00 </span>
+                          <span> x </span>
+                          <span class="cart__number"> 3 </span>
+                          <span class="cart__total-price"> $375.00 </span>
+                        </p>
+                      </div>
+                      <div class="cart__action">
+                        <button class="cart__delete">
+                          <svg
+                            width="14"
+                            height="16"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                          >
+                            <defs>
+                              <path
+                                d="M0 2.625V1.75C0 1.334.334 1 .75 1h3.5l.294-.584A.741.741 0 0 1 5.213 0h3.571a.75.75 0 0 1 .672.416L9.75 1h3.5c.416 0 .75.334.75.75v.875a.376.376 0 0 1-.375.375H.375A.376.376 0 0 1 0 2.625Zm13 1.75V14.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 1 14.5V4.375C1 4.169 1.169 4 1.375 4h11.25c.206 0 .375.169.375.375ZM4.5 6.5c0-.275-.225-.5-.5-.5s-.5.225-.5.5v7c0 .275.225.5.5.5s.5-.225.5-.5v-7Zm3 0c0-.275-.225-.5-.5-.5s-.5.225-.5.5v7c0 .275.225.5.5.5s.5-.225.5-.5v-7Zm3 0c0-.275-.225-.5-.5-.5s-.5.225-.5.5v7c0 .275.225.5.5.5s.5-.225.5-.5v-7Z"
+                                id="a"
+                              />
+                            </defs>
+                            <use
+                              fill="#C3CAD9"
+                              fill-rule="nonzero"
+                              xlink:href="#a"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                    <button type="button" class="cart__btn">Checkout</button>
+                  </li> -->
+                </ul>
+              </div>
+            </div>
+            <div class="header__user">
+              <img
+                src="./assets/images/image-avatar.png"
+                alt="avatar"
+                class="header__user-image"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <section class="section-products-view">
+        <div class="container">
+          <div class="products-view">
+            <div class="container">
+              <div class="products-view__wrapper">
+                <div class="products-view__image-wrapper">
+                  <div class="products-view__image-box--mobile">
+                    <div class="products-view__slider">
+                      <div class="products-view__slider-box">
+                        <img
+                          src="./assets/images/image-product-1.jpg"
+                          alt="slide 1"
+                          class="products-view__slider-image"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="products-view__image-box">
+                  <img
+                    src="./assets/images/image-product-1.jpg"
+                    alt="Fall Limited Edition Sneakers"
+                    class="products-view__image"
+                  />
+                  <div class="products-view__overview">
+                    <div class="products-view__box active">
+                      <img
+                        src="./assets/images/image-product-1-thumbnail.jpg"
+                        alt="product 1"
+                        class="products-view__image"
+                      />
+                    </div>
+                    <div class="products-view__box">
+                      <img
+                        src="./assets/images/image-product-2-thumbnail.jpg"
+                        alt="product 2"
+                        class="products-view__image"
+                      />
+                    </div>
+                    <div class="products-view__box">
+                      <img
+                        src="./assets/images/image-product-3-thumbnail.jpg"
+                        alt="product 3"
+                        class="products-view__image"
+                      />
+                    </div>
+                    <div class="products-view__box">
+                      <img
+                        src="./assets/images/image-product-4-thumbnail.jpg"
+                        alt="product 4"
+                        class="products-view__image"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="products-view__content">
+                  <h3 class="products-view__header">Sneaker Company</h3>
+                  <h1 class="products-view__banner">
+                    <span> Fall Limited Edition </span>
+                    <span> Sneakers </span>
+                  </h1>
+                  <p class="products-view__description">
+                    These low-profile sneakers are your perfect casual wear
+                    companion. Featuring a durable rubber outer sole, they’ll
+                    withstand everything the weather can offer.
+                  </p>
+                  <div class="products-view__prices">
+                    <p class="products-view__price">
+                      <span class="products-view__price--main"> $125.00 </span>
+                      <span class="products-view__price--percentage">
+                        50%
+                      </span>
+                    </p>
+                    <p class="products-view__price--initial">$250.00</p>
+                  </div>
+                  <form action="#" class="form">
+                    <div class="form-group">
+                      <div class="form-group__content">
+                        <div class="form-group__input">
+                          <span
+                            class="form-group__icon form-group__icon--minus"
+                          >
+                            <svg
+                              width="12"
+                              height="4"
+                              xmlns="http://www.w3.org/2000/svg"
+                              xmlns:xlink="http://www.w3.org/1999/xlink"
+                            >
+                              <defs>
+                                <path
+                                  d="M11.357 3.332A.641.641 0 0 0 12 2.69V.643A.641.641 0 0 0 11.357 0H.643A.641.641 0 0 0 0 .643v2.046c0 .357.287.643.643.643h10.714Z"
+                                  id="a"
+                                />
+                              </defs>
+                              <use
+                                fill="#FF7E1B"
+                                fill-rule="nonzero"
+                                xlink:href="#a"
+                              />
+                            </svg>
+                          </span>
+                          <input type="text" class="form__input" value="0" />
+                          <span class="form-group__icon form-group__icon--plus">
+                            <img
+                              src="./assets/icons/icon-plus.svg"
+                              alt="icon plus"
+                              class="plus"
+                            />
+                          </span>
+                        </div>
+                      </div>
+                      <div class="form-group__btn-box">
+                        <button class="form__button" type="submit">
+                          <span class="form__icon">
+                            <svg
+                              width="22"
+                              height="20"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"
+                                fill="#69707D"
+                                fill-rule="nonzero"
+                              />
+                            </svg>
+                          </span>
+                          <span class="form__text"> Add to cart </span>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div> -->
+    <script src="./Js/App.js"></script>
+  </body>
+</html>
