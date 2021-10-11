@@ -181,6 +181,7 @@
 
     &-wrapper {
       display: none;
+      position: relative;
       @media only screen and (max-width: 768px) {
         display: block;
         margin: 0 calc(-3.5% - 15px);
@@ -192,10 +193,47 @@
     }
   }
 
+  &__nav {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--white);
+    // padding: var(--span-xs);
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &__next {
+    right: 15px;
+  }
+
+  &__previous {
+    left: 15px;
+  }
+
   &__slider {
     &-image {
       display: block;
       width: 100%;
+      @media only screen and (max-width: 768px) {
+        height: 500px;
+        object-fit: cover;
+      }
+
+      @media only screen and (max-width: 600px) {
+        height: initial;
+        object-fit: initial;
+      }
     }
   }
 
@@ -468,7 +506,7 @@
     right: 15px;
     transform: translate(5px, 0%);
     margin: 0 auto;
-    box-shadow: none;
+    // box-shadow: none;
   }
 
   &--hidden {
@@ -599,5 +637,68 @@
     font-size: calc(var(--size-m));
     line-height: 20px;
     font-weight: var(--weight-xlg);
+  }
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+
+  &__overlay {
+    background: var(--lightbox-bg);
+    height: 100%;
+  }
+
+  &__content {
+    width: 70%;
+    height: 100%;
+    background: var(--white);
+    padding: var(--span-s) calc(var(--span-s) + 5px);
+  }
+
+  &__close {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__list {
+    padding-top: var(--span-l);
+    display: grid;
+    grid-gap: 20px;
+    list-style-type: none;
+  }
+
+  &__link {
+    color: var(--very-dark-blue);
+    font-family: var(--Kumbh-Sans);
+    font-size: calc(var(--size-m) + 2px);
+    line-height: 25px;
+    font-weight: var(--weight-xlg);
+    text-decoration: none;
+  }
+}
+
+.lightbox {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 3;
+
+  &--hidden {
+    display: none;
+  }
+
+  &__overlay {
+    background: var(--lightbox-bg);
+    height: 100%;
   }
 }

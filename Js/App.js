@@ -51,6 +51,7 @@ const addCart = function (data) {
     ...data,
   };
   cart.push(cartData);
+  localStorage.setItem("carts", JSON.stringify(cart));
 
   renderCart(cartData);
 };
@@ -82,14 +83,30 @@ form.addEventListener("submit", function (e) {
     .querySelector(".products-view__image").alt;
 
   addCart({ title, totalPrice, price, image, value: inputValue });
-  localStorage.setItem("carts", JSON.stringify(cart));
 
   cartEl.classList.remove("empty");
   cartCounter.textContent = cart.length;
   resetCounter();
 });
 
-const renderCart = function ({ image, id, title, price, totalPrice, value }) {
+const renderCart = function ({
+  image,
+  id,
+  title,
+  price,
+  totalPrice,
+  value,
+  deleted,
+}) {
+  localStorage.setItem("carts", JSON.stringify(cart));
+
+  const cartItem = document.querySelector(`[data-id = '${id}']`);
+
+  if (deleted) {
+    cartItem.remove();
+    return;
+  }
+
   const html = `
         <li class="cart__item" id=${id} data-id=${id}>
             <div class="cart__wrapper">
@@ -141,12 +158,9 @@ const renderCart = function ({ image, id, title, price, totalPrice, value }) {
 
 document.addEventListener("DOMContentLoaded", function () {
   const items = localStorage.getItem("carts");
-  console.log(items);
-
   if (items) {
     const carts = JSON.parse(items);
 
-    console.log(carts);
     if (carts.length > 0) {
       carts.forEach((cart) => {
         renderCart(cart);
@@ -159,3 +173,26 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
+
+cartEl.addEventListener("click", function (e) {
+  if (e.target.classList.contains("cart__delete")) {
+    const key = e.target.closest(".cart__item").dataset.id;
+    deleteCartItem(key);
+  }
+});
+
+const deleteCartItem = function (key) {
+  const i = cart.findIndex((cartItem) => cartItem.id === Number(key));
+  const cartItem = {
+    deleted: true,
+    ...cart[i],
+  };
+
+  cart = cart.filter((cartItem) => cartItem.id !== +key);
+  cartCounter.textContent = cart.length;
+
+  if (cart.length === 0) {
+    cartEl.classList.add("empty");
+  }
+  renderCart(cartItem);
+};
