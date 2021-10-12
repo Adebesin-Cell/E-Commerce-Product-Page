@@ -7,6 +7,10 @@ const cartListEl = document.querySelector(".cart__list");
 const cartBody = document.querySelector(".cart__body");
 const cartEl = document.querySelector(".cart");
 const cartCounter = document.querySelector(".header__cart-tooltip span");
+const menuCloseBtn = document.querySelector(".menu__close");
+const menu = document.querySelector(".menu");
+const menuOpenBtn = document.querySelector(".header__menu-toggle");
+const menuOverlay = document.querySelector(".menu__overlay");
 
 let counter = 0;
 let cart = [];
@@ -22,6 +26,21 @@ cartBtn.addEventListener("click", function () {
     cartEl.classList.remove("cart--hidden");
   }
 });
+
+const closeMenu = function () {
+  menu.classList.add("menu--hidden");
+  menuOverlay.classList.add("hidden");
+  body.classList.remove("no-scroll");
+};
+
+const openMenu = function () {
+  menu.classList.remove("menu--hidden");
+  menuOverlay.classList.remove("hidden");
+  body.classList.add("no-scroll");
+};
+
+menuOpenBtn.addEventListener("click", openMenu);
+menuCloseBtn.addEventListener("click", closeMenu);
 
 const decrementCounter = function () {
   if (counter === 0) return;
