@@ -224,10 +224,25 @@
 
   &__next {
     right: 15px;
+
+    &.active {
+      svg {
+        path {
+          stroke: var(--orange);
+        }
+      }
+    }
   }
 
   &__previous {
     left: 15px;
+    &.active {
+      svg {
+        path {
+          stroke: var(--orange);
+        }
+      }
+    }
   }
 
   &__slider {

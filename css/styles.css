@@ -367,8 +367,16 @@ body {
   right: 15px;
 }
 
+.products-view__next.active svg path {
+  stroke: var(--orange);
+}
+
 .products-view__previous {
   left: 15px;
+}
+
+.products-view__previous.active svg path {
+  stroke: var(--orange);
 }
 
 .products-view__slider-image {
