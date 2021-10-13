@@ -753,6 +753,9 @@
     top: 0;
     left: 0;
     z-index: 3;
+    @media only screen and (max-width: 768px) {
+      display: none;
+    }
 
     &.hidden {
       display: none;
@@ -831,10 +834,25 @@
 
     &--next {
       right: -20px;
+      &.active {
+        svg {
+          path {
+            stroke: var(--orange);
+          }
+        }
+      }
     }
 
     &--prev {
       left: -20px;
+
+      &.active {
+        svg {
+          path {
+            stroke: var(--orange);
+          }
+        }
+      }
     }
   }
 }
@@ -847,10 +865,34 @@
   max-width: 60%;
   margin: 0 auto;
 
+  &__box {
+    position: relative;
+  }
+
+  &__overlay {
+    background: var(--white);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    border: 2px solid transparent;
+    transition: all 0.3s;
+    border-radius: 15px;
+  }
+
   &__image {
     display: block;
     width: 100%;
     cursor: pointer;
     border-radius: 15px;
+  }
+
+  &__image.active + &__overlay {
+    opacity: 0.7;
+    visibility: visible;
+    border: 2px solid var(--orange);
   }
 }
