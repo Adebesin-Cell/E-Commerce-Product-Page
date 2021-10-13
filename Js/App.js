@@ -280,3 +280,16 @@ prevBtn.addEventListener("click", prevSlide);
 closeLightboxBtn.addEventListener("click", closeLightbox);
 mainImage.addEventListener("click", openLightBox);
 lightBoxOverlay.addEventListener("click", closeLightbox);
+
+//mobile slider
+
+const mobileSlides = document.querySelectorAll(".products-view__slider-box");
+let currentMobileSlide = 0;
+const showSlide = function (slide) {
+  mobileSlides.forEach(function (s, _) {
+    s.style.display = "none";
+    mobileSlides[slide].style.display = "block";
+  });
+};
+
+showSlide(0);
