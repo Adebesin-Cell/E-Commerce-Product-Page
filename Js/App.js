@@ -1,9 +1,10 @@
+const body = document.querySelector("body");
 const form = document.querySelector(".form");
 const plusBtn = document.querySelector(".form-group__icon--plus");
 const minusBtn = document.querySelector(".form-group__icon--minus");
-const inputEl = document.querySelector(".form__input");
 const cartBtn = document.querySelector(".header__cart-icon");
 const cartListEl = document.querySelector(".cart__list");
+const inputEl = document.querySelector(".form__input");
 const cartBody = document.querySelector(".cart__body");
 const cartEl = document.querySelector(".cart");
 const cartCounter = document.querySelector(".header__cart-tooltip span");
@@ -70,43 +71,8 @@ const addCart = function (data) {
     ...data,
   };
   cart.push(cartData);
-  localStorage.setItem("carts", JSON.stringify(cart));
-
   renderCart(cartData);
 };
-
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-  if (+inputEl.value === 0) return;
-  const inputValue = +inputEl.value.trim();
-
-  const image = e.target
-    .closest(".products-view__wrapper")
-    .querySelector(".products-view__image").src;
-
-  const price = +e.target
-    .closest(".products-view__wrapper")
-    .querySelector(".products-view__price--main")
-    .textContent.trim()
-    .slice(1, "".lastIndexOf("."));
-
-  const totalPrice =
-    +e.target
-      .closest(".products-view__wrapper")
-      .querySelector(".products-view__price--main")
-      .textContent.trim()
-      .slice(1, "".lastIndexOf(".")) * +inputEl.value;
-
-  const title = e.target
-    .closest(".products-view__wrapper")
-    .querySelector(".products-view__image").alt;
-
-  addCart({ title, totalPrice, price, image, value: inputValue });
-
-  cartEl.classList.remove("empty");
-  cartCounter.textContent = cart.length;
-  resetCounter();
-});
 
 const renderCart = function ({
   image,
@@ -120,7 +86,6 @@ const renderCart = function ({
   localStorage.setItem("carts", JSON.stringify(cart));
 
   const cartItem = document.querySelector(`[data-id = '${id}']`);
-
   if (deleted) {
     cartItem.remove();
     return;
@@ -177,25 +142,24 @@ const renderCart = function ({
 
 document.addEventListener("DOMContentLoaded", function () {
   const items = localStorage.getItem("carts");
-  if (items) {
-    const carts = JSON.parse(items);
-
-    if (carts.length > 0) {
-      carts.forEach((cart) => {
-        renderCart(cart);
-      });
-
-      cartEl.classList.remove("empty");
-      cartCounter.textContent = carts.length;
-    } else {
-      cartEl.classList.add("empty");
-    }
+  if (!items || JSON.parse(items).length === 0) {
+    cartEl.classList.add("empty");
+    return;
   }
+  cart = JSON.parse(items);
+
+  cart.forEach((cart) => {
+    renderCart(cart);
+  });
+
+  cartEl.classList.remove("empty");
+  cartCounter.textContent = cart.length;
 });
 
 cartEl.addEventListener("click", function (e) {
   if (e.target.classList.contains("cart__delete")) {
     const key = e.target.closest(".cart__item").dataset.id;
+    console.log(key);
     deleteCartItem(key);
   }
 });
@@ -207,11 +171,112 @@ const deleteCartItem = function (key) {
     ...cart[i],
   };
 
-  cart = cart.filter((cartItem) => cartItem.id !== +key);
+  cart = cart.filter((cartItem) => cartItem.id !== Number(key));
   cartCounter.textContent = cart.length;
 
   if (cart.length === 0) {
     cartEl.classList.add("empty");
   }
+
+  console.log(cartItem);
   renderCart(cartItem);
 };
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  if (+inputEl.value === 0) return;
+
+  const inputValue = +inputEl.value.trim();
+
+  const image = e.target
+    .closest(".products-view__wrapper")
+    .querySelector(".products-view__image").src;
+
+  const price = +e.target
+    .closest(".products-view__wrapper")
+    .querySelector(".products-view__price--main")
+    .textContent.trim()
+    .slice(1, "".lastIndexOf("."));
+
+  const totalPrice =
+    +e.target
+      .closest(".products-view__wrapper")
+      .querySelector(".products-view__price--main")
+      .textContent.trim()
+      .slice(1, "".lastIndexOf(".")) * +inputEl.value;
+
+  const title = e.target
+    .closest(".products-view__wrapper")
+    .querySelector(".products-view__image").alt;
+
+  addCart({ title, totalPrice, price, image, value: inputValue });
+
+  cartEl.classList.remove("empty");
+  cartCounter.textContent = cart.length;
+  resetCounter();
+});
+
+//lightbox
+
+const slides = document.querySelectorAll(".lightbox__slides");
+const nextBtn = document.querySelector(".lightbox__nav--next");
+const prevBtn = document.querySelector(".lightbox__nav--prev");
+const thumbnailsContainer = document.querySelector(".thumbnails");
+const closeLightboxBtn = document.querySelector(".lightbox__close svg");
+const lightbox = document.querySelector(".lightbox");
+const lightBoxOverlay = document.querySelector(".lightbox__overlay");
+const mainImage = document.querySelector(".products-view__image");
+
+let currentSlide = 0;
+const SliderMaxLength = slides.length;
+
+const goToSlide = function (slide) {
+  slides.forEach(function (s, _) {
+    s.style.display = "none";
+    slides[slide].style.display = "block";
+  });
+};
+
+const prevSlide = function () {
+  if (currentSlide === 0) {
+    currentSlide = SliderMaxLength - 1;
+  } else {
+    currentSlide--;
+  }
+  goToSlide(currentSlide);
+};
+
+const nextSlide = function () {
+  if (currentSlide === SliderMaxLength - 1) {
+    currentSlide = 0;
+  } else {
+    currentSlide++;
+  }
+  goToSlide(currentSlide);
+};
+
+goToSlide(0);
+
+thumbnailsContainer.addEventListener("click", function (e) {
+  if (e.target.classList.contains("thumbnails__image")) {
+    const { thumbnail } = e.target.dataset;
+    goToSlide(thumbnail - 1);
+  }
+});
+
+const closeLightbox = function () {
+  lightbox.classList.add("lightbox--hidden");
+  lightBoxOverlay.classList.add("hidden");
+};
+
+const openLightBox = function () {
+  lightbox.classList.remove("lightbox--hidden");
+  lightBoxOverlay.classList.remove("hidden");
+};
+
+nextBtn.addEventListener("click", nextSlide);
+prevBtn.addEventListener("click", prevSlide);
+closeLightboxBtn.addEventListener("click", closeLightbox);
+mainImage.addEventListener("click", openLightBox);
+lightBoxOverlay.addEventListener("click", closeLightbox);

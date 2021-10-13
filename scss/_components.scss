@@ -164,6 +164,12 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 100px;
+    @media only screen and (max-width: 1200px) {
+      grid-gap: 70px;
+    }
+    @media only screen and (max-width: 1024px) {
+      grid-gap: 50px;
+    }
     @media only screen and (max-width: 768px) {
       grid-template-columns: repeat(1, 1fr);
       margin: 0 -15px;
@@ -206,7 +212,6 @@
     justify-content: center;
     border-radius: 50%;
     background: var(--white);
-    // padding: var(--span-xs);
     cursor: pointer;
     width: 48px;
     height: 48px;
@@ -242,7 +247,7 @@
   }
 
   &__content {
-    padding-top: var(--span-2xl);
+    padding-top: var(--span-l);
     @media only screen and (max-width: 768px) {
       padding-top: 0;
     }
@@ -285,6 +290,11 @@
     font-size: calc(var(--size-m) + 2px);
     line-height: 30px;
     font-weight: var(--weight-xlg);
+    @media only screen and (max-width: 1200px) {
+      font-size: calc(var(--size-m));
+      line-height: 25px;
+    }
+
     @media only screen and (max-width: 600px) {
       font-size: var(--size-s);
     }
@@ -300,10 +310,17 @@
     span {
       display: block;
     }
+    @media only screen and (max-width: 1200px) {
+      padding-top: var(--span-xs);
+      font-size: calc(var(--size-xl) + 4px);
+      line-height: 42px;
+    }
+
     @media only screen and (max-width: 768px) {
       font-size: var(--size-xl);
       line-height: 40px;
     }
+
     @media only screen and (max-width: 600px) {
       padding-top: 0;
     }
@@ -317,6 +334,10 @@
     line-height: 30px;
     font-weight: var(--weight-sm);
     max-width: 85%;
+    @media only screen and (max-width: 1200px) {
+      padding-top: var(--span-m);
+    }
+
     @media only screen and (max-width: 1024px) {
       max-width: 100%;
     }
@@ -501,7 +522,7 @@
   padding: var(--span-s) 0;
   border-radius: 10px;
   background: var(--white);
-  z-index: 1;
+  z-index: 2;
   box-shadow: 0 3px 20px 1px rgba(0, 0, 0, 0.1);
   transition: all 300ms;
   @media only screen and (max-width: 600px) {
@@ -669,7 +690,8 @@
     height: 100%;
     background: var(--lightbox-bg);
     height: 100%;
-    z-index: 2;
+    z-index: 3;
+    transform: translate3d(0, 0, 0);
 
     &.hidden {
       display: none;
@@ -713,19 +735,121 @@
 }
 
 .lightbox {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 3;
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 
   &--hidden {
     display: none;
+    transform: translate3d(0, 0, 0);
   }
 
   &__overlay {
     background: var(--lightbox-bg);
     height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+
+    &.hidden {
+      display: none;
+    }
+  }
+
+  &__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+  }
+
+  &__main {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__close-box {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: var(--span-m);
+    max-width: 85.5%;
+    margin-right: auto;
+  }
+
+  &__close {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+      transform: scale(1.5);
+      path {
+        fill: var(--orange);
+      }
+    }
+  }
+
+  &__image-box {
+    max-width: 75%;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    border-radius: 20px;
+    height: 500px;
+    object-fit: cover;
+  }
+
+  &__nav {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--white);
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+    svg {
+      width: 16px;
+      height: 16px;
+      pointer-events: none;
+    }
+
+    &--next {
+      right: -20px;
+    }
+
+    &--prev {
+      left: -20px;
+    }
+  }
+}
+
+.thumbnails {
+  padding-top: var(--span-xl);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 40px;
+  max-width: 60%;
+  margin: 0 auto;
+
+  &__image {
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 15px;
   }
 }

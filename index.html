@@ -21,7 +21,7 @@
     .attribution a { color: hsl(228, 45%, 44%); }
   </style> -->
   </head>
-  <body>
+  <body class="">
     <div class="menu__overlay hidden">&nbsp;</div>
     <div class="menu menu--hidden">
       <div class="">
@@ -226,6 +226,27 @@
                           class="products-view__slider-image"
                         />
                       </div>
+                      <div class="products-view__slider-box">
+                        <img
+                          src="./assets/images/image-product-2.jpg"
+                          alt="slide 1"
+                          class="products-view__slider-image"
+                        />
+                      </div>
+                      <div class="products-view__slider-box">
+                        <img
+                          src="./assets/images/image-product-3.jpg"
+                          alt="slide 1"
+                          class="products-view__slider-image"
+                        />
+                      </div>
+                      <div class="products-view__slider-box">
+                        <img
+                          src="./assets/images/image-product-4.jpg"
+                          alt="slide 1"
+                          class="products-view__slider-image"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -297,24 +318,11 @@
                           <span
                             class="form-group__icon form-group__icon--minus"
                           >
-                            <svg
-                              width="12"
-                              height="4"
-                              xmlns="http://www.w3.org/2000/svg"
-                              xmlns:xlink="http://www.w3.org/1999/xlink"
-                            >
-                              <defs>
-                                <path
-                                  d="M11.357 3.332A.641.641 0 0 0 12 2.69V.643A.641.641 0 0 0 11.357 0H.643A.641.641 0 0 0 0 .643v2.046c0 .357.287.643.643.643h10.714Z"
-                                  id="a"
-                                />
-                              </defs>
-                              <use
-                                fill="#FF7E1B"
-                                fill-rule="nonzero"
-                                xlink:href="#a"
-                              />
-                            </svg>
+                            <img
+                              src="./assets/icons/icon-minus.svg"
+                              alt="icon plus"
+                              class="plus"
+                            />
                           </span>
                           <input type="text" class="form__input" value="0" />
                           <span class="form-group__icon form-group__icon--plus">
@@ -352,10 +360,122 @@
           </div>
         </div>
       </section>
+      <div class="lightbox__overlay hidden">&nbsp;</div>
+      <div class="lightbox lightbox--hidden">
+        <div class="lightbox__content">
+          <div class="lightbox__main">
+            <div class="lightbox__close-box">
+              <div class="lightbox__close">
+                <svg width="14" height="15" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z"
+                    fill="#69707D"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="lightbox__image-box">
+              <div class="lightbox__slides">
+                <img
+                  src="./assets/images/image-product-1.jpg"
+                  alt="lightbox"
+                  class="lightbox__image"
+                />
+              </div>
+              <div class="lightbox__slides">
+                <img
+                  src="./assets/images/image-product-2.jpg"
+                  alt="lightbox"
+                  class="lightbox__image"
+                />
+              </div>
+              <div class="lightbox__slides">
+                <img
+                  src="./assets/images/image-product-3.jpg"
+                  alt="lightbox"
+                  class="lightbox__image"
+                />
+              </div>
+              <div class="lightbox__slides">
+                <img
+                  src="./assets/images/image-product-4.jpg"
+                  alt="lightbox"
+                  class="lightbox__image"
+                />
+              </div>
+              <div class="lightbox__controls">
+                <span class="lightbox__nav--prev lightbox__nav">
+                  <svg
+                    width="12"
+                    height="18"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11 1 3 9l8 8"
+                      stroke="#1D2026"
+                      stroke-width="3"
+                      fill="none"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </span>
+                <span class="lightbox__nav--next lightbox__nav">
+                  <svg
+                    width="13"
+                    height="18"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="m2 1 8 8-8 8"
+                      stroke="#1D2026"
+                      stroke-width="3"
+                      fill="none"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </div>
+            <div class="thumbnails">
+              <div class="thumbnails__box">
+                <img
+                  src="./assets/images/image-product-1-thumbnail.jpg"
+                  alt="thumbnail"
+                  class="thumbnails__image"
+                  data-thumbnail="1"
+                />
+              </div>
+              <div class="thumbnails__box">
+                <img
+                  src="./assets/images/image-product-2-thumbnail.jpg"
+                  alt="thumbnail"
+                  class="thumbnails__image"
+                  data-thumbnail="2"
+                />
+              </div>
+              <div class="thumbnails__box">
+                <img
+                  src="./assets/images/image-product-3-thumbnail.jpg"
+                  alt="thumbnail"
+                  class="thumbnails__image"
+                  data-thumbnail="3"
+                />
+              </div>
+              <div class="thumbnails__box">
+                <img
+                  src="./assets/images/image-product-4-thumbnail.jpg"
+                  alt="thumbnail"
+                  class="thumbnails__image"
+                  data-thumbnail="4"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="lightbox lightbox--hidden">
-      <div class="lightbox__overlay">&nbsp;</div>
-    </div>
+
     <!-- <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Your Name Here</a>.
