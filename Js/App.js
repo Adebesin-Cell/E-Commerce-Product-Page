@@ -24,11 +24,14 @@ const closeLightboxBtn = document.querySelector(".lightbox__close svg");
 const lightbox = document.querySelector(".lightbox");
 const lightBoxOverlay = document.querySelector(".lightbox__overlay");
 const mainImage = document.querySelector(".products-view__image");
+const allImages = document.querySelectorAll(".products-view__box");
+const imageContainer = document.querySelector(".products-view__overview");
 
 //states
 let currentMobileSlide = 0;
 const mobileSlidesLength = mobileSlides.length;
 let counter = 0;
+let currentBanner = 0;
 let cart = [];
 cartCounter.textContent = cart.length;
 let currentSlide = 0;
@@ -314,20 +317,6 @@ const goToNextSlide = function () {
 
 showSlide(0);
 
-//event listeners
-nextBtn.addEventListener("click", nextSlide);
-prevBtn.addEventListener("click", prevSlide);
-closeLightboxBtn.addEventListener("click", closeLightbox);
-mainImage.addEventListener("click", openLightBox);
-lightBoxOverlay.addEventListener("click", closeLightbox);
-mobileNextBtn.addEventListener("click", goToNextSlide);
-mobilePrevBtn.addEventListener("click", goToPrevSlide);
-menuOpenBtn.addEventListener("click", openMenu);
-menuCloseBtn.addEventListener("click", closeMenu);
-
-const allImages = document.querySelectorAll(".products-view__box");
-let currentBanner = 0;
-
 const gotoBanner = function (banner) {
   allImages.forEach((image) => {
     image.classList.remove("active");
@@ -342,11 +331,20 @@ const gotoBanner = function (banner) {
 
 gotoBanner(0);
 
-const imageContainer = document.querySelector(".products-view__overview");
-
 imageContainer.addEventListener("click", function (e) {
   if (e.target.classList.contains("products-view__image")) {
     const index = e.target.dataset.lightbox;
     gotoBanner(index - 1);
   }
 });
+
+//event listeners
+nextBtn.addEventListener("click", nextSlide);
+prevBtn.addEventListener("click", prevSlide);
+closeLightboxBtn.addEventListener("click", closeLightbox);
+mainImage.addEventListener("click", openLightBox);
+lightBoxOverlay.addEventListener("click", closeLightbox);
+mobileNextBtn.addEventListener("click", goToNextSlide);
+mobilePrevBtn.addEventListener("click", goToPrevSlide);
+menuOpenBtn.addEventListener("click", openMenu);
+menuCloseBtn.addEventListener("click", closeMenu);
