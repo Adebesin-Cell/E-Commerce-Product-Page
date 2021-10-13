@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
 cartEl.addEventListener("click", function (e) {
   if (e.target.classList.contains("cart__delete")) {
     const key = e.target.closest(".cart__item").dataset.id;
-    console.log(key);
+
     deleteCartItem(key);
   }
 });
@@ -191,7 +191,6 @@ const deleteCartItem = function (key) {
     cartEl.classList.add("empty");
   }
 
-  console.log(cartItem);
   renderCart(cartItem);
 };
 
