@@ -310,3 +310,29 @@ mobileNextBtn.addEventListener("click", goToNextSlide);
 mobilePrevBtn.addEventListener("click", goToPrevSlide);
 menuOpenBtn.addEventListener("click", openMenu);
 menuCloseBtn.addEventListener("click", closeMenu);
+
+const allImages = document.querySelectorAll(".products-view__box");
+let currentBanner = 0;
+
+const gotoBanner = function (banner) {
+  allImages.forEach((image) => {
+    image.classList.remove("active");
+    allImages[banner].classList.add("active");
+  });
+
+  const index = allImages[banner].querySelector(".products-view__image").dataset
+    .lightbox;
+
+  mainImage.src = `assets/images/image-product-${index}.jpg`;
+};
+
+gotoBanner(0);
+
+const imageContainer = document.querySelector(".products-view__overview");
+
+imageContainer.addEventListener("click", function (e) {
+  if (e.target.classList.contains("products-view__image")) {
+    const index = e.target.dataset.lightbox;
+    gotoBanner(index - 1);
+  }
+});
