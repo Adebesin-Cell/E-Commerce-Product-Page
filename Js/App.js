@@ -1,3 +1,4 @@
+//selecting elements
 const body = document.querySelector("body");
 const form = document.querySelector(".form");
 const plusBtn = document.querySelector(".form-group__icon--plus");
@@ -12,11 +13,26 @@ const menuCloseBtn = document.querySelector(".menu__close");
 const menu = document.querySelector(".menu");
 const menuOpenBtn = document.querySelector(".header__menu-toggle");
 const menuOverlay = document.querySelector(".menu__overlay");
+const mobileSlides = document.querySelectorAll(".products-view__slider-box");
+const mobileNextBtn = document.querySelector(".products-view__next");
+const mobilePrevBtn = document.querySelector(".products-view__previous");
+const slides = document.querySelectorAll(".lightbox__slides");
+const nextBtn = document.querySelector(".lightbox__nav--next");
+const prevBtn = document.querySelector(".lightbox__nav--prev");
+const thumbnailsContainer = document.querySelector(".thumbnails");
+const closeLightboxBtn = document.querySelector(".lightbox__close svg");
+const lightbox = document.querySelector(".lightbox");
+const lightBoxOverlay = document.querySelector(".lightbox__overlay");
+const mainImage = document.querySelector(".products-view__image");
 
+//states
+let currentMobileSlide = 0;
+const mobileSlidesLength = mobileSlides.length;
 let counter = 0;
 let cart = [];
-
 cartCounter.textContent = cart.length;
+let currentSlide = 0;
+const SliderMaxLength = slides.length;
 
 cartBtn.addEventListener("click", function () {
   if (cartBtn.classList.contains("active")) {
@@ -39,9 +55,6 @@ const openMenu = function () {
   menuOverlay.classList.remove("hidden");
   body.classList.add("no-scroll");
 };
-
-menuOpenBtn.addEventListener("click", openMenu);
-menuCloseBtn.addEventListener("click", closeMenu);
 
 const decrementCounter = function () {
   if (counter === 0) return;
@@ -217,20 +230,6 @@ form.addEventListener("submit", function (e) {
   resetCounter();
 });
 
-//lightbox
-
-const slides = document.querySelectorAll(".lightbox__slides");
-const nextBtn = document.querySelector(".lightbox__nav--next");
-const prevBtn = document.querySelector(".lightbox__nav--prev");
-const thumbnailsContainer = document.querySelector(".thumbnails");
-const closeLightboxBtn = document.querySelector(".lightbox__close svg");
-const lightbox = document.querySelector(".lightbox");
-const lightBoxOverlay = document.querySelector(".lightbox__overlay");
-const mainImage = document.querySelector(".products-view__image");
-
-let currentSlide = 0;
-const SliderMaxLength = slides.length;
-
 const goToSlide = function (slide) {
   slides.forEach(function (s, _) {
     s.style.display = "none";
@@ -275,16 +274,6 @@ const openLightBox = function () {
   lightBoxOverlay.classList.remove("hidden");
 };
 
-nextBtn.addEventListener("click", nextSlide);
-prevBtn.addEventListener("click", prevSlide);
-closeLightboxBtn.addEventListener("click", closeLightbox);
-mainImage.addEventListener("click", openLightBox);
-lightBoxOverlay.addEventListener("click", closeLightbox);
-
-//mobile slider
-
-const mobileSlides = document.querySelectorAll(".products-view__slider-box");
-let currentMobileSlide = 0;
 const showSlide = function (slide) {
   mobileSlides.forEach(function (s, _) {
     s.style.display = "none";
@@ -292,4 +281,33 @@ const showSlide = function (slide) {
   });
 };
 
+const goToPrevSlide = function () {
+  if (currentMobileSlide === 0) {
+    currentMobileSlide = mobileSlidesLength - 1;
+  } else {
+    currentMobileSlide--;
+  }
+  showSlide(currentMobileSlide);
+};
+
+const goToNextSlide = function () {
+  if (currentMobileSlide === mobileSlidesLength - 1) {
+    currentMobileSlide = 0;
+  } else {
+    currentMobileSlide++;
+  }
+  showSlide(currentMobileSlide);
+};
+
 showSlide(0);
+
+//event listeners
+nextBtn.addEventListener("click", nextSlide);
+prevBtn.addEventListener("click", prevSlide);
+closeLightboxBtn.addEventListener("click", closeLightbox);
+mainImage.addEventListener("click", openLightBox);
+lightBoxOverlay.addEventListener("click", closeLightbox);
+mobileNextBtn.addEventListener("click", goToNextSlide);
+mobilePrevBtn.addEventListener("click", goToPrevSlide);
+menuOpenBtn.addEventListener("click", openMenu);
+menuCloseBtn.addEventListener("click", closeMenu);
